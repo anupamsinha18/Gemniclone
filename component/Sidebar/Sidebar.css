@@ -1,0 +1,170 @@
+/* =========================================
+   DESKTOP STYLES (Default)
+   ========================================= */
+
+   .sidebar {
+    min-height: 100vh;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #1e1f20; /* Dark Background */
+    padding: 25px 15px;
+    transition: width 0.3s; /* Smooth animation */
+    font-family: 'Outfit', sans-serif;
+    z-index: 100;
+}
+
+/* Menu Icon */
+.sidebar img {
+    width: 20px;
+    cursor: pointer;
+}
+
+.sidebar .menu {
+    display: block;
+    margin-left: 10px;
+}
+
+/* New Chat Button */
+.sidebar .new-chat {
+    margin-top: 50px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 15px;
+    background-color: #131314; /* Darker contrast */
+    border-radius: 50px;
+    font-size: 14px;
+    color: #8e8e8e;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.sidebar .new-chat:hover {
+    background-color: #333537;
+    color: #e3e3e3;
+}
+
+/* Recent History List */
+.sidebar .recent {
+    display: flex;
+    flex-direction: column;
+    animation: fadeIn 1.5s;
+}
+
+.sidebar .recent-title {
+    margin-top: 30px;
+    margin-bottom: 20px;
+    margin-left: 15px;
+    font-size: 14px;
+    color: #e3e3e3;
+}
+
+.sidebar .recent-entry {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 15px;
+    border-radius: 50px;
+    color: #e3e3e3;
+    cursor: pointer;
+    transition: 0.2s;
+    margin-bottom: 5px;
+    white-space: nowrap; /* Keeps text on one line */
+}
+
+.sidebar .recent-entry:hover {
+    background-color: #333537;
+}
+
+/* Bottom Options (Help, Activity, Settings) */
+.sidebar .bottom {
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar .bottom-item {
+    padding-right: 10px;
+    cursor: pointer;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.recent::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* =========================================
+   MOBILE RESPONSIVE STYLES
+   ========================================= */
+
+@media (max-width: 600px) {
+    
+    /* 1. Base Mobile State (Fixed Position) */
+    .sidebar {
+        position: fixed; /* Float on top */
+        top: 0;
+        left: 0;
+        height: 100vh;
+        z-index: 1000;
+        transition: 0.3s;
+        
+        /* DEFAULT CLOSED STATE: Transparent background */
+        background-color: transparent; 
+        box-shadow: none;
+        width: 60px; /* Just wide enough for the button */
+        padding: 15px;
+    }
+
+    /* 2. Hide content when closed on mobile */
+    .sidebar .new-chat, 
+    .sidebar .recent, 
+    .sidebar .bottom {
+        display: none; 
+    }
+    
+    /* 3. Style the Menu Button to be visible on transparency */
+    .sidebar .menu {
+        display: block;
+        background-color: #1e1f20; /* Dark circle background */
+        padding: 10px;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        margin-left: 0;
+        box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+    }
+
+    /* -------------------------------------------
+       OPEN STATE (When class 'extended' is added)
+       ------------------------------------------- */
+    
+    .sidebar.extended {
+        background-color: #1e1f20; /* Solid Dark Background appears */
+        width: 100%; /* Cover full width */
+        padding: 25px 15px;
+        box-shadow: 4px 0px 15px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Show the hidden items */
+    .sidebar.extended .new-chat, 
+    .sidebar.extended .recent, 
+    .sidebar.extended .bottom {
+        display: flex; 
+    }
+    
+    /* Reset Menu Button style when open */
+    .sidebar.extended .menu {
+        background-color: transparent;
+        padding: 0;
+        width: 20px;
+        height: auto;
+        margin-left: 10px;
+        box-shadow: none;
+    }
+}

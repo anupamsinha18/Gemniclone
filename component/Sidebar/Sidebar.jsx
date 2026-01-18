@@ -1,4 +1,4 @@
-import "./sidebar.css";
+import "./Sidebar.css";
 import { assets } from "../../assets/assets";
 import { useContext, useState } from "react";
 import { Context } from "../../Context/context";
@@ -6,7 +6,7 @@ import { Context } from "../../Context/context";
 const Sidebar = () => {
     // Controls if the sidebar is open (true) or closed (false)
     const [extended, setExtended] = useState(false);
-    
+
     // Access global state from Context
     const { onSent, prevPrompts, setRecentPrompt, newChat } = useContext(Context);
 
@@ -20,7 +20,7 @@ const Sidebar = () => {
         // DYNAMIC CLASS: Adds "extended" class when state is true.
         // This allows CSS to toggle visibility on mobile.
         <div className={`sidebar ${extended ? "extended" : ""}`}>
-            
+
             <div className="top">
                 {/* Menu Icon - Toggles the sidebar */}
                 <img
@@ -29,24 +29,24 @@ const Sidebar = () => {
                     alt="menu-icon"
                     onClick={() => setExtended((prev) => !prev)}
                 />
-                
+
                 {/* New Chat Button */}
                 <div onClick={() => newChat()} className="new-chat">
                     <img src={assets.plus_icon} alt="" />
                     {extended ? <p>New Chat</p> : null}
                 </div>
-                
+
                 {/* Recent History Section */}
                 <div className="recent">
-                    
+
                     {/* Only show "Recent" title if sidebar is open */}
                     {extended ? <p className="recent-title">Recent</p> : null}
-                    
+
                     {prevPrompts.map((item, index) => {
                         return (
-                            <div 
+                            <div
                                 key={index}
-                                onClick={() => loadPreviousPrompt(item)} 
+                                onClick={() => loadPreviousPrompt(item)}
                                 className="recent-entry"
                             >
                                 <img src={assets.message_icon} alt="" />
@@ -58,7 +58,7 @@ const Sidebar = () => {
                 </div>
 
             </div>
-            
+
             {/* Bottom Menu Items */}
             <div className="bottom">
                 <div className="bottom-item recent-entry">

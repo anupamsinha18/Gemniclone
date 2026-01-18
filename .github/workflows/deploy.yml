@@ -29,6 +29,8 @@ jobs:
 
       # Build the project
       - name: Build project
+        env:
+          VITE_OPENROUTER_API_KEY: ${{ secrets.VITE_OPENROUTER_API_KEY }}
         run: npm run build
 
       # Deploy to github pages

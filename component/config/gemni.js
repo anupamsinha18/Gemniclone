@@ -57,21 +57,27 @@
 
 /* src/config/gemini.js */
 
+
 const apiKey = import.meta.env.VITE_OPENROUTER_API_KEY;
 console.log("API Key loaded:", apiKey ? "Yes (starts with " + apiKey.substring(0, 4) + ")" : "No");
 
 async function runChat(prompt) {
+  if (!apiKey) {
+    console.error("API Key is missing in runChat");
+    return "Error: API Key is not configured. Please add VITE_OPENROUTER_API_KEY to your environment variables (or GitHub Secrets).";
+  }
+
   try {
     const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
       method: "POST",
       headers: {
         "Authorization": `Bearer ${apiKey}`,
-        "HTTP-Referer": "http://localhost:5173", // Required by OpenRouter for free tier
-        "X-Title": "Gemini Clone", // Optional
+        "HTTP-Referer": window.location.origin, // Dynamic origin for production
+        "X-Title": "Gemini Clone",
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        "model": "nvidia/nemotron-nano-12b-v2-vl:free", // The free model you requested
+        "model": "nvidia/nemotron-nano-12b-v2-vl:free",
         "messages": [
           { "role": "user", "content": prompt }
         ]
@@ -95,7 +101,7 @@ async function runChat(prompt) {
 
   } catch (error) {
     console.error("Request failed:", error);
-    return "Error: Unable to fetch response from OpenRouter.";
+    return "Error: Unable to fetch response from OpenRouter. Check console for details.";
   }
 }
 

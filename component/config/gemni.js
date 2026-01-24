@@ -13,7 +13,7 @@ async function runChat(prompt) {
     const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
       method: "POST",
       headers: {
-        "Authorization": `Bearer ${apiKey}`,
+        "Authorization": `Bearer ${apiKey.trim()}`,
         "HTTP-Referer": window.location.origin,
         "X-Title": "Gemini Clone",
         "Content-Type": "application/json"

@@ -2,8 +2,6 @@
 
 
 const apiKey = import.meta.env.VITE_OPENROUTER_API_KEY;
-console.log("Debug: API Key loaded from env?", apiKey ? "Yes" : "No");
-if (apiKey) console.log("Debug: Key starts with:", apiKey.substring(0, 4));
 
 async function runChat(prompt) {
   if (!apiKey) {

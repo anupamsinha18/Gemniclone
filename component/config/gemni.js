@@ -19,7 +19,7 @@ async function runChat(prompt) {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        "model": "google/gemini-2.0-flash-lite-preview-02-05:free",
+        "model": "nvidia/nemotron-3-nano-30b-a3b:free",
         "messages": [
           { "role": "user", "content": prompt }
         ]
